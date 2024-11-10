@@ -45,5 +45,21 @@ pipeline {
                 }
             }
         }
+        stage('commiting to github repo'){
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                        sh 'git config --global user.email "aziroolfareed31@gmail.com"'
+                        sh 'git config --global user.name "azirool"'
+
+                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/Azirool/Java-Maven.git"
+                        sh 'git add .'
+                        sh 'git commit -m "ci:versioning"'
+                        sh 'git push origin HEAD:main'
+                    }
+
+                }
+            }
+        }
     }
 }
