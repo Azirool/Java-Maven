@@ -8,12 +8,12 @@ pipeline {
             steps{
                 script{
                     echo "Incrementing jar version package"
-                    sh 'mvn build-helper:parse-version version-set \
+                    sh 'mvn build-helper:parse-version versions:set \
                         -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
                         version:commit'
-                    def findVersion = readFIle('pom.xml') =~ '<version>(.+)</version>'
+                    def findVersion = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def currentVersion = findVersion[0][1]
-                    env.IMAGE_NAME = "$currentVersion-$BUILD_NUMBER"
+                    env.IMAGE_NAME = "'${currentVersion}'-$BUILD_NUMBER"
                 }
             }
         }
