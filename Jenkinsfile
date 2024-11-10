@@ -52,7 +52,7 @@ pipeline {
                         sh 'git config --global user.email "aziroolfareed31@gmail.com"'
                         sh 'git config --global user.name "azirool"'
 
-                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/Azirool/Java-Maven"
+                        sh "git remote add origin https://github.com/Azirool/Java-Maven.git"
                         sh 'git add .'
                         sh 'git commit -m "ci:versioning"'
                         sh 'git push origin HEAD:main'
