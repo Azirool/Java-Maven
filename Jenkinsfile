@@ -33,7 +33,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "docker build -t azirool/demo-app:'${IMAGE_NAME}' ."
                         sh "echo '${PASS}' | docker login -u '${USER}' --password-stdin"
-                        sh "docker push azirool/demo-app:1.0.'${IMAGE_NAME}'"
+                        sh "docker push azirool/demo-app:'${IMAGE_NAME}'"
                     }
                 }
             }
