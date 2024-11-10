@@ -55,7 +55,7 @@ pipeline {
                         //sh "git remote add origin https://github.com/Azirool/Java-Maven.git"
                         sh 'git add .'
                         sh 'git commit -m "ci:versioning"'
-                        sh 'git push origin HEAD:main'
+                        sh 'git push origin main'
                     }
 
                 }
