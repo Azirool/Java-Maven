@@ -14,7 +14,7 @@ pipeline {
                     def findVersion = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def currentVersion = findVersion[0][1]
                     env.IMAGE_NAME = "'${currentVersion}'-$BUILD_NUMBER"
-                    echo "what is happening"
+                    echo 'Increment version: SUCCESS'
                 }
             }
         }
@@ -23,25 +23,27 @@ pipeline {
                 script{
                     echo 'building jar file'
                     sh 'mvn clean package'
+                    echo 'Build JAR: SUCCESS'
                 }
             }
         }
         stage('build image...'){
             steps{
                 script{
-                    echo "Building image..."
+                    echo 'Building image...'
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "docker build -t azirool/demo-app:'${IMAGE_NAME}' ."
                         sh "echo '${PASS}' | docker login -u '${USER}' --password-stdin"
                         sh "docker push azirool/demo-app:'${IMAGE_NAME}'"
                     }
+                    echo 'Build Docker Image: SUCCESS'
                 }
             }
         }
         stage('deploy...'){
             steps{
                 script{
-                    echo ("This is for later")
+                    echo ("Nothing to deploy for now")
                 }
             }
         }
@@ -58,7 +60,7 @@ pipeline {
                         sh 'git commit -m "ci:versioning"'
                         sh 'git push origin HEAD:main'
                     }
-
+                    echo 'Commiting to Github: SUCCESS'
                 }
             }
         }
