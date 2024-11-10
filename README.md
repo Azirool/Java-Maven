@@ -5,7 +5,7 @@ The purpose of this project is to gain hands-on experience with automated CI/CD 
 building, and deploying using a Jenkins multibranch pipeline triggered by GitHub webhooks.
 
 ## Overview Process
-Versioning > Build JAR file > Build Docker Image > Deploy to server > Commit to GitHub Repo
+Versioning > Build JAR > Build Docker Image > Push to DockerHub > Deploy to server > Commit to GitHub repo
 
 ## CI/CD Process with Jenkins
 
@@ -15,4 +15,4 @@ This project is designed to be used in a CI/CD pipeline, specifically with the f
 build them according to the pipeline script (`Jenkinsfile`).
 3. **Versioning**: Before each build, the Jenkins pipeline script will increment the project version as specified in 
 the `pom.xml` file.
-4. **Docker Integration**: The project will be containerized and built into a Docker image for easy deployment.
+4. **Docker Integration**: Jenkins builds a Docker image and pushes it to Docker Hub for easy deployment.
