@@ -56,7 +56,7 @@ pipeline {
                         sh 'git remote set-url origin https://${USER}:${PASS}@github.com/Azirool/Java-Maven.git'
                         sh 'git add .'
                         sh 'git commit -m "ci:versioning"'
-                        sh 'git push origin main'
+                        sh 'git push origin HEAD:main'
                     }
 
                 }
