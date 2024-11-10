@@ -14,7 +14,7 @@ pipeline {
                     def findVersion = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def currentVersion = findVersion[0][1]
                     env.IMAGE_NAME = "'${currentVersion}'-$BUILD_NUMBER"
-                    echo 'Increment version: SUCCESS'
+                    echo 'Increment version: SUCCESSFUL'
                 }
             }
         }
